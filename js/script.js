@@ -1,13 +1,13 @@
 $(function() {
 
 
-var model = {
+let model = {
   input_height: '',
   input_width: '',
   colorPicker: '#000'
 };
 
-var octupus = {
+let octupus = {
   setGrid: function(height, width) {
     model.input_height = height;
     model.input_width = width;
@@ -35,17 +35,17 @@ var octupus = {
   }
 }
 
-var view = {
+let view = {
   init: function() {
     view.changeColor();
-    $("#sizePicker").on("submit", function(){
+    $("#sizePicker").on("submit", function(cb){
       var input_height = $("#input_height").val();
       var input_width = $("#input_width").val();
       octupus.setGrid(input_height, input_width);
 
       view.render();
 
-      return false;
+      cb.preventDefault();
     });
 
     $("#colorPicker").on("change", function() {
@@ -53,7 +53,7 @@ var view = {
     });
 
   },
-
+  //Function used to chenge the color when the user choose one
   changeColor: function() {
     var colorPicker = $("#colorPicker").val();
     octupus.setColor(colorPicker);
